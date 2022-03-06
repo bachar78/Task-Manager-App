@@ -7,7 +7,6 @@ const generateToken = require('../utils/generateToken.js')
 //@des Register a new Member
 //@route /api/members
 //@access Public
-
 const registerMember = asyncHandler(async (req, res) => {
   const { name, position, email, password, isAdmin } = req.body
 
@@ -16,6 +15,7 @@ const registerMember = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error('Please include all fields')
   }
+  
   //Find if member already exists
   const memberExists = await Member.findOne({ email })
   if (memberExists) {
