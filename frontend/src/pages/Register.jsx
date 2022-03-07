@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
+import { useSelector, useDispatch } from 'react-redux'
+import {register} from '../features/auth/authSlice'
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -11,14 +13,28 @@ function Register() {
     password2: '',
   })
   const { name, email, position, password, password2 } = formData
+  const dispatch = useDispatch()
+  const {member, isLoading, isError, isSuccess, message} = useSelector(state => state.auth)
   const onChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+  const onSubmit = (e) => {
+    e.preventDefault()
+    if (password !== password2) {
+      toast.error("Password don't much")
+    } else {
+      const memberData = {
+        name, email, position, password
+      }
+      dispatch(register(memberData))
+    }
+    
   }
   return (
     <>
       <section className='heading'>
         <h1>
-          <FaUser /> Register
+          <FaUser /> Register 
         </h1>
         <p>Please create an account if you are a new member in the team</p>
       </section>
@@ -34,6 +50,7 @@ function Register() {
               onChange={onChange}
               placeholder='Enter your Name'
               autoComplete='off'
+              required
             />
           </div>
           <div className='form-group'>
@@ -46,6 +63,7 @@ function Register() {
               onChange={onChange}
               placeholder='Enter your Email'
               autoComplete='off'
+              required
             />
           </div>
           <div className='form-group'>
@@ -58,6 +76,7 @@ function Register() {
               onChange={onChange}
               placeholder='Enter your Position'
               autoComplete='off'
+              required
             />
           </div>
           <div className='form-group'>
@@ -70,6 +89,7 @@ function Register() {
               onChange={onChange}
               placeholder='Enter Password'
               autoComplete='off'
+              required
             />
           </div>
           <div className='form-group'>
@@ -82,6 +102,7 @@ function Register() {
               onChange={onChange}
               placeholder='Confirm your Password'
               autoComplete='off'
+              required
             />
           </div>
           <div className='form-group'>
