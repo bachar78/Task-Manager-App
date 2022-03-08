@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config()
 const connectDB = require('./config/db.js')
 const PORT = process.env.PORT || 5000
 const memberRoutes = require('./routes/memberRoutes')
-const { errorHandler } = require('./middleware/errorMiddleware.js')
+const { errorHandler } = require('./middleware/errorMiddleware')
 
 //connect to database
 connectDB()
@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }))
 
 //Home Route
 app.get('/', (req, res) => {
-  res.status(200).send({ message: 'Welcome to the support Desk API' })
+  res.status(200).send({ message: 'Welcome' })
 })
 //Routers
 app.use('/api/members', memberRoutes)

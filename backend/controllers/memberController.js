@@ -19,7 +19,7 @@ const registerMember = asyncHandler(async (req, res) => {
   //Find if member already exists
   const memberExists = await Member.findOne({ email })
   if (memberExists) {
-    res.status(400)
+    res.status(401)
     throw new Error('Member already exists')
   }
   //Hash Password
