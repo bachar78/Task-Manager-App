@@ -4,6 +4,7 @@ const dotenv = require('dotenv').config()
 const connectDB = require('./config/db.js')
 const PORT = process.env.PORT || 5000
 const memberRoutes = require('./routes/memberRoutes')
+const tasksRoutes = require('./routes/tasksRoutes')
 const { errorHandler } = require('./middleware/errorMiddleware')
 
 //connect to database
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 })
 //Routers
 app.use('/api/members', memberRoutes)
+app.use('/api/tasks', tasksRoutes)
 
 //Error Handler middleware
 app.use(errorHandler)

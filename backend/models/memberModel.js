@@ -14,6 +14,7 @@ const memberSchema = mongoose.Schema(
     position: {
       type: String,
       required: [true, 'Please add a position'],
+      enum: ['Backend', 'Front-end','Full-stack','Admin']
     },
     password: {
       type: String,
