@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema(
   {
-    user: {
+    member: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'Member',
