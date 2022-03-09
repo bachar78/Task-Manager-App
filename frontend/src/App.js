@@ -5,8 +5,10 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import NewTask from './pages/NewTask'
 import PrivateRoute from './components/PrivateRoute'
+import Profile from './pages/Profile'
+import Tasks from './pages/Tasks'
+import NewTask from './pages/NewTask'
 
 function App() {
   return (
@@ -18,8 +20,10 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/new-task' element={<PrivateRoute />}>
-              <Route path='/new-task' element={<NewTask />} />
+            <Route path='/profile' element={<PrivateRoute />}>
+              <Route path='/profile' element={<Profile />} />
+              <Route path='tasks' element={<Tasks />} />
+              <Route path='new-task' element={<NewTask />} />
             </Route>
           </Routes>
         </div>

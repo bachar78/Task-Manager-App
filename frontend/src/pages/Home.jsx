@@ -1,21 +1,29 @@
 import { Link } from 'react-router-dom'
-import { FaQuestionCircle, FaTicketAlt } from 'react-icons/fa'
-
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { FaUser, FaSignInAlt } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 function Home() {
+  const navigate = useNavigate()
+  const { member } = useSelector((state) => state.auth)
+  useEffect(() => {
+    if (member) {
+      navigate('/profile')
+    }
+  }, [member, navigate])
   return (
     <>
       <section className='heading'>
-        <h1>What do you need help with?</h1>
-        <p>Please choose from an option below</p>
+        <p>Already a member? </p>
+        <Link className='btn btn-block btn-reverse' to='/login'>
+          {' '}
+          <FaSignInAlt /> Sign In
+        </Link>
+        <p>New member? </p>
+        <Link className='btn btn-block' to='/register'>
+          <FaUser /> Sign Up
+        </Link>
       </section>
-
-      <Link to='/new-task' className='btn btn-reverse btn-block'>
-        <FaQuestionCircle /> Create New Task
-      </Link>
-
-      <Link to='/tasks' className='btn btn-block'>
-        <FaTicketAlt /> View My Tasks
-      </Link>
     </>
   )
 }

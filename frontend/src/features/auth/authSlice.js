@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
 
-//Get member from localStorage
+// Get member from localstorage
 const member = JSON.parse(localStorage.getItem('member'))
+
 const initialState = {
   member: member ? member : null,
   isError: false,
@@ -11,7 +12,7 @@ const initialState = {
   message: '',
 }
 
-// Register new user
+// Register new member
 export const register = createAsyncThunk(
   'auth/register',
   async (member, thunkAPI) => {
@@ -30,27 +31,23 @@ export const register = createAsyncThunk(
   }
 )
 
-//Login a member
-export const login = createAsyncThunk(
-  'auth/login',
-  async (member, thunkAPI) => {
-    try {
-      return await authService.login(member)
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString()
+// Login member
+export const login = createAsyncThunk('auth/login', async (member, thunkAPI) => {
+  try {
+    return await authService.login(member)
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString()
 
-      return thunkAPI.rejectWithValue(message)
-    }
+    return thunkAPI.rejectWithValue(message)
   }
-)
-//Logout a member
-export const logout = createAsyncThunk('auth/logout', () => {
-  authService.logout()
+})
+
+// Logout member
+export const logout = createAsyncThunk('auth/logout', async () => {
+  await authService.logout()
 })
 
 export const authSlice = createSlice({
@@ -64,7 +61,6 @@ export const authSlice = createSlice({
       state.message = ''
     },
   },
-  //extraReducers allow us to add cases and change cases
   extraReducers: (builder) => {
     builder
       .addCase(register.pending, (state) => {
@@ -79,7 +75,7 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.user = null
+        state.member = null
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true
@@ -93,7 +89,7 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
-        state.user = null
+        state.member = null
       })
       .addCase(logout.fulfilled, (state) => {
         state.member = null
@@ -102,5 +98,4 @@ export const authSlice = createSlice({
 })
 
 export const { reset } = authSlice.actions
-
 export default authSlice.reducer

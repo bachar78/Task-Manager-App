@@ -1,7 +1,8 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaHome } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+
 
 function Header() {
   const navigate = useNavigate()
@@ -16,7 +17,7 @@ function Header() {
   return (
     <header className='header'>
       <div className='logo'>
-        <Link to='/'>Tasks Manager</Link>
+        <Link to='/'><FaHome/> Home</Link>
       </div>
       <ul>
         {member ? (

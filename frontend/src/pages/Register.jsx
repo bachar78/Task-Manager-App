@@ -26,9 +26,9 @@ function Register() {
       toast.error(message)
     }
 
-    // Redirect when logged in
+    // Redirect when registered
     if (isSuccess || member) {
-      navigate('/')
+      navigate('/profile')
     }
 
     dispatch(reset())
@@ -91,17 +91,16 @@ function Register() {
             />
           </div>
           <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              id='position'
+          <select
               name='position'
-              value={position}
-              onChange={onChange}
-              placeholder='Enter your Position'
-              autoComplete='off'
-              required
-            />
+              id='position'
+              onChange={onChange}>
+              <option value='Front-end'>Front-end</option>
+              <option value='Backend'>Backend</option>
+              <option value='in progress'>Full-stack</option>
+              <option value='Design'>Design</option>
+              <option value='Admin'>Admin</option>
+            </select>
           </div>
           <div className='form-group'>
             <input

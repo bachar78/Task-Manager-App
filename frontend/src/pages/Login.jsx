@@ -24,7 +24,7 @@ function Login() {
     }
     // Redirect when logged in
     if (isSuccess || member) {
-      navigate('/')
+      navigate('/profile')
     }
     dispatch(reset())
   }, [isError, navigate, member, isSuccess, dispatch, message])

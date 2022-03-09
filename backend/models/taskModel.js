@@ -14,16 +14,15 @@ const taskSchema = mongoose.Schema(
     description: {
       type: String,
       required: [true, 'Please enter a description of the task'],
-      unique: true,
     },
     status: {
       type: String,
-      enum: ['new', 'started', 'in_progress', 'finished'],
+      enum: ['new', 'started', 'Progress', 'finished'],
       required: [true, 'Please define a status'],
       default: 'new',
     },
     deadline: {
-      type: Date,
+      type: String,
       required: [true, 'Please define a Deadline'],
     },
   },
