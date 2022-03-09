@@ -19,7 +19,7 @@ const taskSchema = mongoose.Schema(
     status: {
       type: String,
       enum: ['new', 'started', 'in_progress', 'finished'],
-      required: [true, 'Please add a position'],
+      required: [true, 'Please define a status'],
       default: 'new',
     },
     deadline: {
