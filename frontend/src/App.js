@@ -5,6 +5,9 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import NewTask from './pages/NewTask'
+import PrivateRoute from './components/PrivateRoute'
+
 function App() {
   return (
     <>
@@ -15,10 +18,13 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/new-task' element={<PrivateRoute />}>
+              <Route path='/new-task' element={<NewTask />} />
+            </Route>
           </Routes>
         </div>
       </Router>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   )
 }

@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom'
-import {FaUser, FaSignInAlt} from 'react-icons/fa'
+import { FaQuestionCircle, FaTicketAlt } from 'react-icons/fa'
+
 function Home() {
   return (
     <>
       <section className='heading'>
-        <p>
-          Already a member? {' '}
-        </p>
-        <Link className='btn btn-block btn-reverse' to='/login'> <FaSignInAlt/> Sign In</Link>
-        <p>
-          New member? {' '}
-        </p>
-        <Link className='btn btn-block' to='/register'><FaUser/> Sign Up</Link>
+        <h1>What do you need help with?</h1>
+        <p>Please choose from an option below</p>
       </section>
+
+      <Link to='/new-task' className='btn btn-reverse btn-block'>
+        <FaQuestionCircle /> Create New Task
+      </Link>
+
+      <Link to='/tasks' className='btn btn-block'>
+        <FaTicketAlt /> View My Tasks
+      </Link>
     </>
   )
 }
