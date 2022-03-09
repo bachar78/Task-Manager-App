@@ -41,7 +41,7 @@ function NewTask() {
   }
   return (
     <>
-      <BackButton url={'/profile'}/>
+      <BackButton url={'/profile'} />
       <section>
         <h1>
           {member.position} Developer {member.name}
@@ -58,6 +58,7 @@ function NewTask() {
               id='task'
               value={task}
               onChange={(e) => setTask(e.target.value)}
+              autoComplete='off'
             />
           </div>
           <div className='form-group'>
@@ -67,6 +68,7 @@ function NewTask() {
               id='description'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              autoComplete='off'
             />
           </div>
           <div className='form-group'>
@@ -88,6 +90,7 @@ function NewTask() {
               id='deadline'
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
+              autoComplete='off'
             />
           </div>
           <div className='form-group'>

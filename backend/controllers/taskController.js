@@ -48,14 +48,20 @@ const createTask = asyncHandler(async (req, res) => {
   const { task, description, status, deadline } = req.body
   if (!task || !description || !deadline) {
     res.status(400)
-    throw new Error('Please add a task and a description')
+    throw new Error('Please fill all the fields')
   }
   const member = await Member.findById(req.member.id)
   if (!member) {
     res.status(401)
     throw new Error('Member not found')
   }
-  const newTask = await Task.create({ ...req.body, member: req.member.id })
+  const newTask = await Task.create({
+    task,
+    description,
+    deadline,
+    status,
+    member: req.member.id,
+  })
   res.status(201).json(newTask)
 })
 
@@ -89,7 +95,7 @@ const deleteTask = asyncHandler(async (req, res) => {
 // @route   PUT /api/tickets/:id
 // @access  Private
 const updateTask = asyncHandler(async (req, res) => {
-  const {id} = req.params
+  const { id } = req.params
   // Get user using the id in the JWT
   const member = await Member.findById(req.member.id)
 

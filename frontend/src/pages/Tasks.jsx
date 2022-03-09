@@ -7,6 +7,7 @@ import TaskItem from '../components/TaskItem'
 
 const Tasks = () => {
   const { tasks, isLoading, isSuccess } = useSelector((state) => state.tasks)
+  const { member } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
   //To clear the state on unmount (we can use the same one)
@@ -28,11 +29,10 @@ const Tasks = () => {
 
   return (
     <>
-      <BackButton url={"/profile"}/>
-      <h1>All tasks</h1>
+      <BackButton url={'/profile'} />
+      <h1>{ member.name}'s tasks</h1>
       <div>
-      <div className='ticket-headings'>
-          
+        <div className='ticket-headings'>
           <div className=''>Task</div>
           <div className=''>Status</div>
           <div className=''></div>

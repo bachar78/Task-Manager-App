@@ -9,25 +9,24 @@ const taskSchema = mongoose.Schema(
     },
     task: {
       type: String,
-      required: [true, 'Please enter a task'],
+      required: true,
     },
     description: {
       type: String,
-      required: [true, 'Please enter a description of the task'],
+      required: true,
     },
     status: {
       type: String,
-      enum: ['new', 'started', 'Progress', 'finished'],
-      required: [true, 'Please define a status'],
+      required: true,
       default: 'new',
     },
     deadline: {
       type: String,
-      required: [true, 'Please define a Deadline'],
+      required: true,
     },
   },
   {
-    timestamps: true,
+    timeStamps: true,
   }
 )
 
