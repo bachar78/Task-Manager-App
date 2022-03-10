@@ -9,6 +9,8 @@ import PrivateRoute from './components/PrivateRoute'
 import Profile from './pages/Profile'
 import Tasks from './pages/Tasks'
 import NewTask from './pages/NewTask'
+import Task from './pages/Task'
+import UpdateTask from './pages/UpdateTask'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
               <Route path='/profile' element={<Profile />} />
               <Route path='tasks' element={<Tasks />} />
               <Route path='new-task' element={<NewTask />} />
+              <Route path='task/:taskId' element={<Task />} />
+              <Route path='task/:taskId/update' element={<UpdateTask />} />
             </Route>
           </Routes>
         </div>

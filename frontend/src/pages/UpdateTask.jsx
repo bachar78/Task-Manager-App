@@ -1,52 +1,47 @@
-
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createTask, reset } from '../features/tasks/taskSlice'
+import { updateTask, reset } from '../features/tasks/taskSlice'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
+import axios from 'axios'
 
-function NewTask() {
+const UpdateTask = () => {
+  const { state } = useLocation()
   const { member } = useSelector((state) => state.auth)
-  const { isLoading, isError, isSuccess, message } = useSelector(
+  const { isLoading, isError, isSuccess, message, isUpdated } = useSelector(
     (state) => state.tasks
   )
-  const [task, setTask] = useState('')
-  const [description, setDescription] = useState('')
-  const [status, setStatus] = useState('new')
-  const [deadline, setDeadline] = useState('')
-
+  const [task, setTask] = useState(state.task)
+  const [description, setDescription] = useState(state.description)
+  const [status, setStatus] = useState(state.status)
+  const [deadline, setDeadline] = useState(state.deadline)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { taskId } = useParams()
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const data = { taskData: { task, description, status, deadline }, taskId }
+    dispatch(updateTask(data))
+  }
   useEffect(() => {
-    if (isError) {
-      toast.error(message)
-    }
-    if (isSuccess) {
+    if (isUpdated) {
+      toast.success('Message Updated Successfully')
       dispatch(reset())
       navigate('/profile/tasks')
     }
     dispatch(reset())
-  }, [isError, message, isSuccess, dispatch, navigate])
-
-  const onSubmit = (e) => {
-    e.preventDefault()
-    dispatch(createTask({ task, description, status, deadline }))
-  }
-
-  if (isLoading) {
-    return <Spinner />
-  }
+  }, [isError, message, dispatch, navigate, isUpdated])
   return (
     <>
       <BackButton url={'/profile'} />
       <section>
         <h1>
-          {member.position} Developer {member.name}
+          Update your task
         </h1>
-        <h5>{member.email}</h5>
       </section>
 
       <section className='form'>
@@ -94,7 +89,7 @@ function NewTask() {
             />
           </div>
           <div className='form-group'>
-            <button className='btn btn-back'>Add</button>
+            <button className='btn btn-back'>Update</button>
           </div>
         </form>
       </section>
@@ -102,4 +97,4 @@ function NewTask() {
   )
 }
 
-export default NewTask
+export default UpdateTask

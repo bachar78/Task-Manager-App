@@ -88,7 +88,7 @@ const deleteTask = asyncHandler(async (req, res) => {
   }
   await task.remove()
 
-  res.status(200).json({ message: 'Task deleted successfully' })
+  res.status(200).json(task)
 })
 
 // @desc    Update ticket

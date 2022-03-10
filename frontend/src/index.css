@@ -176,7 +176,9 @@ h3 {
   background: darkred;
   border: none;
 }
-
+.btn-update {
+  background: #2a397c;
+}
 .btn-back {
   width: 150px;
   margin-bottom: 20px;
