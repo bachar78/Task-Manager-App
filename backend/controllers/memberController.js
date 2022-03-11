@@ -4,6 +4,20 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const generateToken = require('../utils/generateToken.js')
 
+
+//@des Get all Members
+//@route /api/members
+//@access Public
+const getMembers = asyncHandler(async (req, res) => {
+  const members = await Member.find({})
+  res.status(200).json(members)
+  if (!members || members.length === 0) {
+    res.status(400)
+    throw new Error('There no member in the team')
+  }
+})
+
+
 //@des Register a new Member
 //@route /api/members
 //@access Public
@@ -90,4 +104,5 @@ module.exports = {
   registerMember,
   loginMember,
   getMe,
+  getMembers
 }

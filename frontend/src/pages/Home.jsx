@@ -3,12 +3,18 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { FaUser, FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 function Home() {
   const navigate = useNavigate()
   const { member } = useSelector((state) => state.auth)
   useEffect(() => {
     if (member) {
       navigate('/profile')
+    } else {
+      ;(async () => {
+        const { data } = await axios.get('/api/members')
+        console.log(data)
+      })()
     }
   }, [member, navigate])
   return (

@@ -4,10 +4,11 @@ const {
   registerMember,
   loginMember,
   getMe,
+  getMembers,
 } = require('../controllers/memberController.js')
-const {protect}  = require('../middleware/authMiddleware.js')
+const { protect } = require('../middleware/authMiddleware.js')
 
-router.post('/', registerMember)
+router.route('/').get(getMembers).post(registerMember)
 router.post('/login', loginMember)
 router.get('/me', protect, getMe)
 

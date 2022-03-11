@@ -22,14 +22,14 @@ const getTasks = asyncHandler(async (req, res) => {
 //@access Private
 
 const getTask = asyncHandler(async (req, res) => {
-  const { id } = req.params
+  const { taskId } = req.params
   //get member
   const member = await Member.findById(req.member.id)
   if (!member) {
     res.status(401)
     throw new Error('Member not found')
   }
-  const task = await Task.findById(id)
+  const task = await Task.findById(taskId)
   if (!task) {
     res.status(404)
     throw new Error('Ticket not found')
@@ -66,17 +66,17 @@ const createTask = asyncHandler(async (req, res) => {
 })
 
 //@des Delete a task
-//@route DELETE /api/tasks/:id
+//@route DELETE /api/tasks/:taskId
 //@access Private
 const deleteTask = asyncHandler(async (req, res) => {
-  const { id } = req.params
+  const { taskId } = req.params
   //get member
   const member = await Member.findById(req.member.id)
   if (!member) {
     res.status(401)
     throw new Error('Member not found')
   }
-  const task = await Task.findById(id)
+  const task = await Task.findById(taskId)
 
   if (!task) {
     res.status(404)
@@ -92,10 +92,10 @@ const deleteTask = asyncHandler(async (req, res) => {
 })
 
 // @desc    Update ticket
-// @route   PUT /api/tickets/:id
+// @route   PUT /api/tickets/:taskId
 // @access  Private
 const updateTask = asyncHandler(async (req, res) => {
-  const { id } = req.params
+  const { taskId } = req.params
   // Get user using the id in the JWT
   const member = await Member.findById(req.member.id)
 
@@ -104,7 +104,7 @@ const updateTask = asyncHandler(async (req, res) => {
     throw new Error('Member not found')
   }
 
-  const task = await Task.findById(id)
+  const task = await Task.findById(taskId)
 
   if (!task) {
     res.status(404)
@@ -116,7 +116,7 @@ const updateTask = asyncHandler(async (req, res) => {
     throw new Error('Not Authorized')
   }
 
-  const updatedTask = await Task.findByIdAndUpdate(id, req.body, {
+  const updatedTask = await Task.findByIdAndUpdate(taskId, req.body, {
     new: true,
   })
 
