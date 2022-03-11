@@ -50,6 +50,7 @@ export const updateTask = createAsyncThunk(
     }
   }
 )
+
 //View a single task
 export const getTask = createAsyncThunk(
   'task/get',
