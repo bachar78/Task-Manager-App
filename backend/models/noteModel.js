@@ -20,7 +20,7 @@ const noteSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a note'],
     },
-    byAdminRead: {
+    isChecked: {
       type: Boolean,
       default: false,
     },

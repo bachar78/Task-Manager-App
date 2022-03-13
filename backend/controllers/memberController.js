@@ -4,19 +4,21 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const generateToken = require('../utils/generateToken.js')
 
-
 //@des Get all Members
 //@route /api/members
 //@access Public
 const getMembers = asyncHandler(async (req, res) => {
   const members = await Member.find({})
-  res.status(200).json(members)
+  const homeMember = members.map((member) => ({
+    name: member.name,
+    position: member.position,
+  }))
+  res.status(200).json(homeMember)
   if (!members || members.length === 0) {
     res.status(400)
     throw new Error('There no member in the team')
   }
 })
-
 
 //@des Register a new Member
 //@route /api/members
@@ -29,7 +31,7 @@ const registerMember = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error('Please include all fields')
   }
-  
+
   //Find if member already exists
   const memberExists = await Member.findOne({ email })
   if (memberExists) {
@@ -54,6 +56,7 @@ const registerMember = asyncHandler(async (req, res) => {
       name: member.name,
       email: member.email,
       position: member.position,
+      isAdmin: member.isAdmin,
       token: generateToken(member._id),
     })
   } else {
@@ -78,6 +81,7 @@ const loginMember = asyncHandler(async (req, res) => {
       name: member.name,
       email: member.email,
       position: member.position,
+      isAdmin: member.isAdmin,
       token: generateToken(member._id),
     })
   } else {
@@ -104,5 +108,5 @@ module.exports = {
   registerMember,
   loginMember,
   getMe,
-  getMembers
+  getMembers,
 }

@@ -5,7 +5,7 @@ import { FaUser } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
-
+import styles from './register.module.css'
 function Register() {
   const [formData, setFormData] = useState({
     name: '',
@@ -49,19 +49,18 @@ function Register() {
         password,
       }
       dispatch(register(memberData))
+      toast.success('Welcome in our team')
     }
   }
   if (isLoading) {
     return <Spinner />
   }
   return (
-    <>
-      <section className='heading'>
-        <h1>
-          <FaUser /> Register
-        </h1>
-        <p>Please create an account if you are a new member in the team</p>
-      </section>
+    <div className={styles.register}>
+      <h1>
+        <FaUser /> Register
+      </h1>
+
       <section className='form'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
@@ -91,13 +90,10 @@ function Register() {
             />
           </div>
           <div className='form-group'>
-          <select
-              name='position'
-              id='position'
-              onChange={onChange}>
+            <select name='position' id='position' onChange={onChange}>
               <option value='Front-end'>Front-end</option>
               <option value='Backend'>Backend</option>
-              <option value='in progress'>Full-stack</option>
+              <option value='Full-stack'>Full-stack</option>
               <option value='Design'>Design</option>
               <option value='Admin'>Admin</option>
             </select>
@@ -133,7 +129,7 @@ function Register() {
           </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

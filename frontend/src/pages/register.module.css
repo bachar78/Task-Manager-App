@@ -1,0 +1,12 @@
+.register {
+    min-height: 90vh;
+    background-color: var(--color-secondary);
+    text-align: center;
+}
+
+.register h1 {
+    font-size: 4.5rem;
+    padding: 6rem;
+    color: var(--color-primary-dark);
+    text-transform: uppercase;
+}

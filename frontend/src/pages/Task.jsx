@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTask, reset, deleteTask } from '../features/tasks/taskSlice'
-import {
-  getNotes,
-  reset as notesReset,
-  createNote,
-} from '../features/notes/notesSlice'
+import { getNotes, createNote } from '../features/notes/notesSlice'
 import { useParams, useNavigate } from 'react-router-dom'
 import NoteItem from '../components/NoteItem'
 import BackButton from '../components/BackButton'
@@ -36,11 +32,9 @@ const Task = () => {
   const navigate = useNavigate()
   const { task, isLoading, isSuccess, isDeleted, isError, message } =
     useSelector((state) => state.tasks)
-  const {
-    notes,
-    isLoading: notesIsLoading,
-    isSuccess: notesIsSuccess,
-  } = useSelector((state) => state.notes)
+  const { notes, isLoading: notesIsLoading } = useSelector(
+    (state) => state.notes
+  )
 
   //To clear the state on unmount (we can use the same one)
   useEffect(() => {

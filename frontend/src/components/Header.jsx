@@ -2,7 +2,7 @@ import { FaSignInAlt, FaSignOutAlt, FaUser, FaHome } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
-
+import styles from './header.module.css'
 
 function Header() {
   const navigate = useNavigate()
@@ -15,9 +15,11 @@ function Header() {
   }
 
   return (
-    <header className='header'>
+    <header className={styles.header}>
       <div className='logo'>
-        <Link to='/'><FaHome/> Home</Link>
+        <Link to='/'>
+          <FaHome /> Home
+        </Link>
       </div>
       <ul>
         {member ? (

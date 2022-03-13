@@ -1,19 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
+:root {
+  --color-primary: #c69963;
+  --color-primary-dark: #b28451;
+  --color-secondary: #101d2c;
+
+  --color-grey-light-1: #f9f7f6;
+  --color-grey-light-2: #aaa;
+
+  --color-grey-dark-1: #54483a;
+  --color-grey-dark-2: #6d5d4b;
+
+ 
+  --shadow: 0 4rem 10rem rgba(198, 153, 99, 0.055);
+
+  --line: 1px solid var(--color-primary);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  height: 100vh;
+  max-height: 100vh;
 }
 
 a {
   text-decoration: none;
-  color: #000;
+  color: inherit;
+  font-size: 1.8rem;
 }
 
 p {
@@ -24,32 +46,22 @@ ul {
   list-style: none;
 }
 
-li {
-  line-height: 2.2;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
 .container {
+  max-width: 120rem;
   width: 100%;
-  max-width: 960px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
-  text-align: center;
+  padding: 0 2rem;
 }
-
+/* 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 2rem;
   border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
+  min-height: 10vh;
+ 
 }
 
 .header ul {
@@ -73,9 +85,9 @@ h3 {
 
 .header ul li a svg {
   margin-right: 5px;
-}
+} */
 
-.heading {
+/* .heading {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 50px;
@@ -85,7 +97,7 @@ h3 {
 .heading p {
   color: #828282;
   font-size: 1.4rem;
-}
+} */
 
 .boxes {
   display: grid;
@@ -315,6 +327,26 @@ h3 {
   top: 15px;
   right: 10px;
   font-size: 14px;
+}
+
+.note-checked {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+
+  cursor: pointer;
+}
+
+.note-checked button {
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 12px;
+  appearance: button;
+  background-color: #2a397c;
+}
+
+.note-checked a:visited {
+  display: none;
 }
 
 .delete-note {
