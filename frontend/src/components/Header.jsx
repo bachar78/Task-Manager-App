@@ -25,13 +25,14 @@ function Header() {
         {member ? (
           <>
             <li>
-              <button onClick={onLogout} className='btn'>
+              <button onClick={onLogout} className={styles.logout}>
                 {' '}
                 <FaSignOutAlt /> Logout
               </button>
             </li>
-            <li>
-              <FaUser /> {member.name}
+            <li className={styles.user}>
+              <img src="realtor-1.jpeg" alt="" />
+              <h5>{member.name}</h5>
             </li>
           </>
         ) : (

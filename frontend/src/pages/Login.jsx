@@ -6,6 +6,7 @@ import { login, reset } from '../features/auth/authSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
+import styles from './register.module.css'
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -45,18 +46,17 @@ function Login() {
     return <Spinner />
   }
   return (
-    <>
-      <section className='heading'>
+    
+      <div className={styles.register}>
         <h1>
           <FaSignInAlt /> Login
         </h1>
-        <p>
+        {/* <p>
           New member? <Link to='/register'>Sign up</Link> here
-        </p>
-      </section>
-      <section className='form'>
+        </p> */}
+      <section className={styles.form}>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <input
               type='email'
               className='form-control'
@@ -68,8 +68,9 @@ function Login() {
               autoComplete='off'
               required
             />
+            <label htmlFor='email'>Enter your Email</label>
           </div>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <input
               type='password'
               className='form-control'
@@ -77,18 +78,18 @@ function Login() {
               name='password'
               value={password}
               onChange={onChange}
-              placeholder='Enter Password'
+              placeholder='Enter Your Password'
               autoComplete='off'
               required
             />
+            <label htmlFor='password'>Enter Your Password</label>
           </div>
-
-          <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
+          <div className={styles['form-group']}>
+            <button className={styles.btn}>Submit</button>
           </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

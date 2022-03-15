@@ -1,24 +1,37 @@
 import { Link } from 'react-router-dom'
 import { FaQuestionCircle, FaTicketAlt } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-
+import styles from './profile.module.css'
 const Profile = () => {
   const { member } = useSelector((state) => state.auth)
   return (
-    <>
-      <section className='heading'>
-        <h3>Name: {member.name}</h3>
-        <h3>Email: {member.email}</h3>
-        <h3>Position: {member.position}</h3>
+    <div className={styles.heading}>
+      <section className={styles.member}>
+        <div className={styles['member-image']}>
+          <img src='realtor-1.jpeg' alt='' />
+        </div>
+        <div className={styles['member-details']}>
+          <h3>
+            <span>Member: </span> {member.name}
+          </h3>
+          <h3>
+            {' '}
+            <span>Email: </span> {member.email}
+          </h3>
+          <h3>
+            <span>Position:</span> {member.position}
+          </h3>
+        </div>
       </section>
-
-      <Link to='tasks' className='btn btn-block'>
-        <FaTicketAlt /> View My Tasks
-      </Link>
-      <Link to='new-task' className='btn btn-reverse btn-block'>
-        <FaQuestionCircle /> Create New Task
-      </Link>
-    </>
+      <section className={styles.tasks}>
+        <Link to='tasks' className={styles.btn}>
+          <FaTicketAlt /> View Tasks
+        </Link>
+        <Link to='new-task' className={`${styles.btn} ${styles['btn-reserve']}`}>
+          <FaQuestionCircle /> Create New Task
+        </Link>
+      </section>
+    </div>
   )
 }
 

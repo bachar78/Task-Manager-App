@@ -1,8 +1,8 @@
 .heading {
   font-size: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(45rem, 1fr));
-  height: 90vh;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  min-height: 70vh;
 }
 
 .heading-left {
@@ -75,10 +75,10 @@
 .heading-right .members {
  display: flex;
  flex-wrap: wrap;
- 
+ margin: 1rem 2rem 2rem 2rem;
 }
 .heading-right h1 {
   color: var(--color-primary);
- margin: 3rem 0;
+ margin: 2rem 0;
   text-transform: uppercase;
 }

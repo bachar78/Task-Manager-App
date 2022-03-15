@@ -41,7 +41,7 @@ function Home() {
           </div>
         </div>
         <div className={styles['heading-right']}>
-          <h1>Our Team</h1>
+          <h1>The Team</h1>
           <div className={styles.members}>
             {members &&
               members.map((member) => (

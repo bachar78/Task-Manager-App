@@ -60,10 +60,9 @@ function Register() {
       <h1>
         <FaUser /> Register
       </h1>
-
-      <section className='form'>
+      <section className={styles.form}>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <input
               type='text'
               className='form-control'
@@ -75,8 +74,9 @@ function Register() {
               autoComplete='off'
               required
             />
+            <label htmlFor='name'>Enter your Name</label>
           </div>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <input
               type='email'
               className='form-control'
@@ -88,17 +88,9 @@ function Register() {
               autoComplete='off'
               required
             />
+            <label htmlFor='email'>Enter your Email</label>
           </div>
-          <div className='form-group'>
-            <select name='position' id='position' onChange={onChange}>
-              <option value='Front-end'>Front-end</option>
-              <option value='Backend'>Backend</option>
-              <option value='Full-stack'>Full-stack</option>
-              <option value='Design'>Design</option>
-              <option value='Admin'>Admin</option>
-            </select>
-          </div>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <input
               type='password'
               className='form-control'
@@ -110,8 +102,9 @@ function Register() {
               autoComplete='off'
               required
             />
+            <label htmlFor='password'>Enter Password</label>
           </div>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <input
               type='password'
               className='form-control'
@@ -123,9 +116,19 @@ function Register() {
               autoComplete='off'
               required
             />
+            <label htmlFor='password'>Confirm your Password</label>
           </div>
-          <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
+          <div className={styles['form-group']}>
+            <select name='position' id='position' onChange={onChange}>
+              <option value='Front-end'>Front-end</option>
+              <option value='Backend'>Backend</option>
+              <option value='Full-stack'>Full-stack</option>
+              <option value='Design'>Design</option>
+              <option value='Admin'>Admin</option>
+            </select>
+          </div>
+          <div className={styles['form-group']}>
+            <button className={styles.btn}>Submit</button>
           </div>
         </form>
       </section>
