@@ -6,7 +6,7 @@ import { updateTask, reset } from '../features/tasks/taskSlice'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
-import axios from 'axios'
+import styles from './updateTask.module.css'
 
 const UpdateTask = () => {
   const { state } = useLocation()
@@ -35,19 +35,20 @@ const UpdateTask = () => {
     }
     dispatch(reset())
   }, [isError, message, dispatch, navigate, isUpdated])
-  return (
-    <>
-      <BackButton url={'/profile'} />
-      <section>
-        <h1>
-          Update your task
-        </h1>
-      </section>
 
-      <section className='form'>
+  if (isLoading) {
+    return <Spinner />
+  }
+  return (
+    <div className={styles['update-page']}>
+      <div className={styles['update-heading']}>
+        <BackButton url={'/profile'} />
+        <h1>Update Your Task</h1>
+      </div>
+
+      <section className={styles.form}>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <label htmlFor='task'>Task</label>
+          <div className={styles['form-group']}>
             <input
               type='text'
               id='task'
@@ -55,9 +56,9 @@ const UpdateTask = () => {
               onChange={(e) => setTask(e.target.value)}
               autoComplete='off'
             />
+            <label htmlFor='task'>Task</label>
           </div>
-          <div className='form-group'>
-            <label htmlFor='description'>Description</label>
+          <div className={styles['form-group']}>
             <input
               type='text'
               id='description'
@@ -65,9 +66,9 @@ const UpdateTask = () => {
               onChange={(e) => setDescription(e.target.value)}
               autoComplete='off'
             />
+            <label htmlFor='description'>Description</label>
           </div>
-          <div className='form-group'>
-            <label htmlFor='status'>Status</label>
+          <div className={styles['form-group']}>
             <select
               name='status'
               id='status'
@@ -77,9 +78,9 @@ const UpdateTask = () => {
               <option value='Progress'>In Progress</option>
               <option value='finished'>Finished</option>
             </select>
+            <label htmlFor='status'>Status</label>
           </div>
-          <div className='form-group'>
-            <label htmlFor='deadline'>Set a deadline</label>
+          <div className={styles['form-group']}>
             <input
               type='date'
               id='deadline'
@@ -87,13 +88,14 @@ const UpdateTask = () => {
               onChange={(e) => setDeadline(e.target.value)}
               autoComplete='off'
             />
+            <label htmlFor='deadline'>Set a deadline</label>
           </div>
           <div className='form-group'>
-            <button className='btn btn-back'>Update</button>
+            <button className={styles.btn}>Update</button>
           </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

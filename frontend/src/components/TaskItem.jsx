@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styles from '../pages/tasks.module.css'
 
 const TaskItem = ({ task }) => {
   return (
-    <div className='ticket'>
-      {/* <div>{new Date(task.createdAt).toLocaleString('en-US')}</div> */}
+    <div className={styles.task}>
       <div className=''>{task.task}</div>
-      <div className={`status status-${task.status}`}>{task.status}</div>
-      <Link to={`/profile/task/${task._id}`} className='btn btn-reverse btn-sm'>
+      <div className={`${styles.status} ${styles[`status-${task.status}`]}`}>
+        {task.status}
+      </div>
+      <Link to={`/profile/task/${task._id}`} className={styles.btn}>
         View
       </Link>
       <div>{task.deadline}</div>

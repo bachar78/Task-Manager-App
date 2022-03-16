@@ -1,0 +1,39 @@
+.task-page {
+    min-height: 70rem;
+    background-color: var(--color-secondary);
+    padding: 8rem;
+    color: var(--color-grey-light-1);
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: var(--color-primary-dark);
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    appearance: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-sm {
+    padding: .8rem 1rem;
+    font-size: 13px;
+    width: 10%;
+    background-color: var(--color-grey-light-1);
+    color: var(--color-secondary);
+    margin: 2rem 0;
+    font-weight: lighter;
+  }
+  .btn svg {
+      margin-right: .3rem;
+  }
+  .btn:hover {
+    transform: scale(0.98);
+  }

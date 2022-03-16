@@ -9,6 +9,7 @@ import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify'
 import Modal from 'react-modal'
 import { FaPlus } from 'react-icons/fa'
+import styles from './task.module.css'
 const customStyles = {
   content: {
     width: '600px',
@@ -81,10 +82,10 @@ const Task = () => {
     return <h3>Some Thing Went Wrong</h3>
   }
   return (
-    <div className='ticket-page'>
+    <div className={styles['task-page']}>
       <header className='ticket-header'>
         <BackButton url={'/profile/tasks'} />
-        <h1>Task: {task.task}</h1>
+        <h2>Task: {task.task}</h2>
         <h2>
           Created At:{' '}
           {new Date(task.createdAt).toLocaleString('en-NL', {
@@ -103,7 +104,7 @@ const Task = () => {
         <h2>The expected Deadline: {task.deadline}</h2>
         <h2>Notes</h2>
       </header>
-      <button className='btn' onClick={openModal}>
+      <button className={`${styles.btn} ${styles['btn-sm']}`} onClick={openModal}>
         <FaPlus /> Add note
       </button>
       {notes.length === 0 ? (
@@ -113,7 +114,7 @@ const Task = () => {
       )}
       {}
       <button
-        className='btn btn-update btn-block'
+        className={styles.btn}
         onClick={() => navigate('update', { state: task })}>
         Update Task
       </button>
