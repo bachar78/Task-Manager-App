@@ -24,6 +24,36 @@ const getNotes = asyncHandler(async (req, res) => {
   res.status(200).json(notes)
 })
 
+//@des check a note
+//@route PUT /api/tasks/:taskId/notes/:noteId
+//@access Private
+
+const checkNote = asyncHandler(async (req, res) => {
+  const { taskId, noteId } = req.params
+  const member = await Member.findById(req.member.id)
+  if (!member) {
+    res.status(401)
+    throw new Error('Member not Found')
+  }
+
+  const task = await Task.findById(taskId)
+  if (task.member.toString() !== req.member.id) {
+    res.status(401)
+    throw new Error('Member not Authorized')
+  }
+  const note = await Note.findById(noteId)
+  if (
+    note.task.toString() !== task.id &&
+    note.member.toString() !== req.member.id
+  ) {
+    res.status(401)
+    throw new Error("This note doesn't belong to this task")
+  }
+
+  const checkedNote = await Note.findByIdAndUpdate(noteId, { isChecked: true })
+
+  res.status(200).json(checkedNote)
+})
 
 //@des Create  a new note for a task
 //@route POST /api/tasks/:taskId/notes
@@ -53,4 +83,4 @@ const createNote = asyncHandler(async (req, res) => {
   res.status(201).json(newNote)
 })
 
-module.exports = { getNotes, createNote }
+module.exports = { getNotes, createNote, checkNote }

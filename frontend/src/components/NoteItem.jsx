@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux'
-
+import styles from './noteItem.module.css'
 const NoteItem = ({ note }) => {
   const { member } = useSelector((state) => state.auth)
 
   return (
     <div
-      className='note'
+      className={styles.note}
       style={{
         backgroundColor:
           note.isAdmin && note.isChecked
@@ -17,16 +17,15 @@ const NoteItem = ({ note }) => {
             : '#fff',
         color: note.isAdmin || note.isChecked ? '#fff' : '#000',
       }}>
-      <h4>
+      <h3>
         Note of {note.isAdmin ? <span>Admin</span> : <span>{member.name}</span>}
-      </h4>
+      </h3>
       <p>{note.text}</p>
-      <div className='note-date'>
+      <div className={styles['note-date']}>
         {new Date(note.createdAt).toLocaleString('en', 'NL')}
       </div>
-      <div className='note-checked'>
-        <button className='btn-checked'>Checked</button>
-      </div>
+
+      <button className={styles['btn-checked']}>Checked</button>
     </div>
   )
 }

@@ -9,6 +9,7 @@ const initialState = {
   isLoading: false,
   isUpdated: false,
   isDeleted: false,
+  isChecked: false,
   message: '',
 }
 

@@ -20,6 +20,9 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     position: 'relative',
+    padding: '3rem',
+    border: '2px solid var(--color-primary-dark)', 
+    boxShadow: '0 2rem 2rem rgba(0, 0, 0, 0.7)'
   },
 }
 
@@ -83,38 +86,40 @@ const Task = () => {
   }
   return (
     <div className={styles['task-page']}>
-      <header className='ticket-header'>
-        <BackButton url={'/profile/tasks'} />
-        <h2>Task: {task.task}</h2>
-        <h2>
-          Created At:{' '}
-          {new Date(task.createdAt).toLocaleString('en-NL', {
-            timeZone: 'Europe/Amsterdam',
-            timeZoneName: 'long',
-          })}
-        </h2>
-        <h2>
-          Status:{' '}
-          <span className={`status status-${task.status}`}>{task.status}</span>
-        </h2>
-        <div className='ticket-desc'>
-          <h3>Description of the Task</h3>
-          <p>{task.description}</p>
-        </div>
-        <h2>The expected Deadline: {task.deadline}</h2>
-        <h2>Notes</h2>
-      </header>
-      <button className={`${styles.btn} ${styles['btn-sm']}`} onClick={openModal}>
+      <BackButton url={'/profile/tasks'} />
+      <h1 className={styles.task}>
+        Task: <span>{task.task}</span>
+      </h1>
+      <h1>
+        Created At:{' '}
+        <span> {new Date(task.createdAt).toLocaleString('en-NL')} </span>
+      </h1>
+      <h1>
+        Status:{' '}
+        <span className={`${styles.status} ${styles[`status-${task.status}`]}`}>
+          {task.status}
+        </span>
+      </h1>
+      <h1>Deadline: <span>{task.deadline}</span></h1>
+      <div className={styles['task-desc']}>
+        <h3>Description</h3>
+        <p>{task.description}</p>
+      </div>
+      <button
+        className={`${styles.btn} ${styles['btn-sm']}`}
+        onClick={openModal}>
         <FaPlus /> Add note
       </button>
-      {notes.length === 0 ? (
-        <h3>There is no note</h3>
-      ) : (
-        notes.map((note) => <NoteItem key={note._id} note={note} />)
-      )}
-      {}
+      <div className={styles['notes-body']}>
+        {notes.length === 0 ? (
+          <h3>There is no note</h3>
+        ) : (
+          notes.map((note) => <NoteItem key={note._id} note={note} />)
+        )}
+        {}
+      </div>
       <button
-        className={styles.btn}
+        className={`${styles.btn} ${styles['btn-update']}`}
         onClick={() => navigate('update', { state: task })}>
         Update Task
       </button>
@@ -122,13 +127,14 @@ const Task = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel='Add Note'>
-        <h2>Add Note</h2>
-        <button className='btn-close' onClick={closeModal}>
+        contentLabel='Add Note'
+      >
+        <button className={styles['btn-close']} onClick={closeModal}>
           X
         </button>
         <form onSubmit={onNoteSubmit}>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
+          <label htmlFor='noteText'>Add Note</label>
             <textarea
               name='noteText'
               id='noteText'
@@ -137,17 +143,16 @@ const Task = () => {
               onChange={(e) => setNoteText(e.target.value)}></textarea>
           </div>
           <div className='form-group'>
-            <button className='btn'>Submit</button>
+            <button className={`${styles.btn} ${styles['btn-modal']}`}>Submit</button>
           </div>
         </form>
       </Modal>
       {task.status === 'finished' ? (
-        <>
-          <p>Done!! Want to close the task?</p>
-          <button className='btn btn-danger btn-block' onClick={onDelete}>
-            Delete Task
-          </button>
-        </>
+        <button
+          className={`${styles.btn} ${styles['btn-delete']}`}
+          onClick={onDelete}>
+          Delete Task
+        </button>
       ) : null}
     </div>
   )

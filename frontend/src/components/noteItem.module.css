@@ -1,0 +1,36 @@
+.note {
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  text-align: left;
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  min-height: 10vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.note h3 {
+  grid-column: 1/5;
+  text-decoration: underline;
+}
+
+.note p {
+  font-size: 1.2rem;
+  grid-column: 1/5;
+}
+
+.note-date {
+  grid-column: 3/4;
+  justify-self: end;
+  align-self: center;
+}
+
+.btn-checked {
+  align-items: center;
+  justify-self: end;
+  background-color: var(--color-secondary);
+  border: none;
+  color: var(--color-grey-light-1);
+  padding: 0.5rem;
+}
