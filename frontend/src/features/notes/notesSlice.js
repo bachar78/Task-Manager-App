@@ -33,6 +33,26 @@ export const getNotes = createAsyncThunk(
   }
 )
 
+//check a note 
+export const checkNote = createAsyncThunk(
+  'notes/getAll',
+  async (data, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.member.token
+      // return await notesService.getNotes(taskId, token)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 //Create a task note
 export const createNote = createAsyncThunk(
   'notes/create',
