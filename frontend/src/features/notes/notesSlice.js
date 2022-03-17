@@ -33,13 +33,13 @@ export const getNotes = createAsyncThunk(
   }
 )
 
-//check a note 
+//check a note
 export const checkNote = createAsyncThunk(
-  'notes/getAll',
+  'notes/checkNote',
   async (data, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.member.token
-      // return await notesService.getNotes(taskId, token)
+      return await notesService.checkNote(data, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -47,7 +47,6 @@ export const checkNote = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString()
-
       return thunkAPI.rejectWithValue(message)
     }
   }
@@ -77,7 +76,9 @@ export const notesSlice = createSlice({
   name: 'notes',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    setIsChecked: (state) => {
+      state.isChecked = false
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -107,9 +108,24 @@ export const notesSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      .addCase(checkNote.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(checkNote.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isChecked = true
+        state.notes.map((note) =>
+          action.payload._id === note._id ? (note.isChecked = true) : note
+        )
+      })
+      .addCase(checkNote.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
   },
 })
 
-export const { reset } = notesSlice.actions
+export const { setIsChecked } = notesSlice.actions
 
 export default notesSlice.reducer

@@ -10,6 +10,7 @@ import { toast } from 'react-toastify'
 import Modal from 'react-modal'
 import { FaPlus } from 'react-icons/fa'
 import styles from './task.module.css'
+import { setIsChecked } from '../features/notes/notesSlice'
 const customStyles = {
   content: {
     width: '600px',
@@ -36,7 +37,7 @@ const Task = () => {
   const navigate = useNavigate()
   const { task, isLoading, isSuccess, isDeleted, isError, message } =
     useSelector((state) => state.tasks)
-  const { notes, isLoading: notesIsLoading } = useSelector(
+  const { notes, isLoading: notesIsLoading, isChecked } = useSelector(
     (state) => state.notes
   )
 
@@ -57,6 +58,9 @@ const Task = () => {
       toast.success('Task Deleted Successfully')
       dispatch(reset())
       navigate('/profile/tasks')
+    }
+    if (isChecked) {
+      dispatch(setIsChecked())
     }
     dispatch(getTask(taskId))
     dispatch(getNotes(taskId))

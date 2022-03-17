@@ -20,12 +20,26 @@ const createNote = async (data, token) => {
   }
   const response = await axios.post(
     `${API_URL}/${data.taskId}/notes`,
-    {text: data.noteText},
+    { text: data.noteText },
     config
   )
-  console.log(response.data)
   return response.data
 }
-const notesService = { getNotes, createNote }
+
+//Check note
+const checkNote = async (data, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  const response = await axios.put(
+    `${API_URL}/${data.taskId}/notes/${data.noteId}`,{isChecked: true},
+    config
+  )
+  return response.data
+ 
+}
+const notesService = { getNotes, createNote, checkNote }
 
 export default notesService

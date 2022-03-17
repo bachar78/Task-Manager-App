@@ -43,15 +43,22 @@ const checkNote = asyncHandler(async (req, res) => {
   }
   const note = await Note.findById(noteId)
   if (
-    note.task.toString() !== task.id &&
+    note.task.toString() !== task._id.toString() &&
     note.member.toString() !== req.member.id
   ) {
     res.status(401)
     throw new Error("This note doesn't belong to this task")
   }
+  
 
-  const checkedNote = await Note.findByIdAndUpdate(noteId, { isChecked: true })
-
+  const checkedNote = await Note.findByIdAndUpdate(
+    noteId,
+    { isChecked: true },
+    {
+      new: true,
+    }
+  )
+ 
   res.status(200).json(checkedNote)
 })
 
