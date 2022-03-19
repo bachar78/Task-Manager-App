@@ -22,8 +22,8 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     position: 'relative',
     padding: '3rem',
-    border: '2px solid var(--color-primary-dark)', 
-    boxShadow: '0 2rem 2rem rgba(0, 0, 0, 0.7)'
+    border: '2px solid var(--color-primary-dark)',
+    boxShadow: '0 2rem 2rem rgba(0, 0, 0, 0.7)',
   },
 }
 
@@ -37,9 +37,11 @@ const Task = () => {
   const navigate = useNavigate()
   const { task, isLoading, isSuccess, isDeleted, isError, message } =
     useSelector((state) => state.tasks)
-  const { notes, isLoading: notesIsLoading, isChecked } = useSelector(
-    (state) => state.notes
-  )
+  const {
+    notes,
+    isLoading: notesIsLoading,
+    isChecked,
+  } = useSelector((state) => state.notes)
 
   //To clear the state on unmount (we can use the same one)
   useEffect(() => {
@@ -104,7 +106,9 @@ const Task = () => {
           {task.status}
         </span>
       </h1>
-      <h1>Deadline: <span>{task.deadline}</span></h1>
+      <h1>
+        Deadline: <span>{task.deadline}</span>
+      </h1>
       <div className={styles['task-desc']}>
         <h3>Description</h3>
         <p>{task.description}</p>
@@ -131,14 +135,13 @@ const Task = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel='Add Note'
-      >
+        contentLabel='Add Note'>
         <button className={styles['btn-close']} onClick={closeModal}>
           X
         </button>
         <form onSubmit={onNoteSubmit}>
           <div className={styles['form-group']}>
-          <label htmlFor='noteText'>Add Note</label>
+            <label htmlFor='noteText'>Add Note</label>
             <textarea
               name='noteText'
               id='noteText'
@@ -147,7 +150,9 @@ const Task = () => {
               onChange={(e) => setNoteText(e.target.value)}></textarea>
           </div>
           <div className='form-group'>
-            <button className={`${styles.btn} ${styles['btn-modal']}`}>Submit</button>
+            <button className={`${styles.btn} ${styles['btn-modal']}`}>
+              Submit
+            </button>
           </div>
         </form>
       </Modal>

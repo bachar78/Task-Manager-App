@@ -18,7 +18,6 @@
 .note p {
   font-size: 1.2rem;
   grid-column: 1/5;
-  
 }
 
 .note-date {
@@ -38,7 +37,7 @@
 }
 
 .btn-checked:hover {
-  transform: scale(.95);
+  transform: scale(0.95);
 }
 
 @media (max-width: 600px) {

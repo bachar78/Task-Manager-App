@@ -46,12 +46,11 @@ function Login() {
     return <Spinner />
   }
   return (
-    
-      <div className={styles.register}>
-        <h1>
-          <FaSignInAlt /> Login
-        </h1>
-        {/* <p>
+    <div className={styles.register}>
+      <h1>
+        <FaSignInAlt /> Login
+      </h1>
+      {/* <p>
           New member? <Link to='/register'>Sign up</Link> here
         </p> */}
       <section className={styles.form}>

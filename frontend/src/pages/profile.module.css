@@ -1,92 +1,92 @@
 .heading {
-    min-height: 70rem;
-    background-color: var(--color-secondary);
-    padding: 8rem;
-    color: var(--color-grey-light-1);
-    font-size: 2.8rem;
+  min-height: 70rem;
+  background-color: var(--color-secondary);
+  padding: 8rem;
+  color: var(--color-grey-light-1);
+  font-size: 2.8rem;
 }
 
 .member {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 4rem;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
 }
 
 .member-details h3 {
-    display: flex;
-    justify-content: start;
-    font-weight: lighter;
+  display: flex;
+  justify-content: start;
+  font-weight: lighter;
 }
 
 .member-details span {
-color: var(--color-primary);
-margin: 0 1rem 2rem 0;
-display: block;
-font-weight: bold;
-margin-right: 2rem;
+  color: var(--color-primary);
+  margin: 0 1rem 2rem 0;
+  display: block;
+  font-weight: bold;
+  margin-right: 2rem;
 }
 .member-image {
-    height: 25rem;
-    margin: 4rem;
+  height: 25rem;
+  margin: 4rem;
 }
 
 .member-image img {
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .tasks {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10rem;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10rem;
 }
 
 .btn {
-    padding: 10px 20px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    background: var(--color-primary-dark);
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: center;
-    appearance: button;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40%;
-  }
-  
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: var(--color-primary-dark);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+
 .btn-reserve {
-    background-color: var(--color-grey-light-1);
-    color: var(--color-primary-dark);;
+  background-color: var(--color-grey-light-1);
+  color: var(--color-primary-dark);
 }
-  .btn svg {
-    margin-right: 8px;
-  }
+.btn svg {
+  margin-right: 8px;
+}
 @media (max-width: 900px) {
-    .heading {
-        height: 100vh;
-    }
-}
-  @media (max-width:600px) {
-    .heading {
-        min-width: 40rem;
-    }
-      h3 {
-          font-size: 2.5rem;
-      }
-      .tasks {
-          flex-direction: column;
-          align-items: center;
-          margin-top: 1rem;
-      }
-      .btn {
-          margin-bottom: 3rem;
-          width: 80%;
-      }
+  .heading {
+    height: 100vh;
   }
+}
+@media (max-width: 600px) {
+  .heading {
+    min-width: 40rem;
+  }
+  h3 {
+    font-size: 2.5rem;
+  }
+  .tasks {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .btn {
+    margin-bottom: 3rem;
+    width: 80%;
+  }
+}

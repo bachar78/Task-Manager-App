@@ -20,7 +20,7 @@ function Home() {
       })()
     }
   }, [member, navigate, setMembers])
- 
+
   return (
     <>
       <section className={styles.heading}>
@@ -44,7 +44,8 @@ function Home() {
         <div className={styles['heading-right']}>
           <h1>The Team</h1>
           <div className={styles.members}>
-            {members && members.length > 0 &&
+            {members &&
+              members.length > 0 &&
               members.map((member) => (
                 <MemberItem member={member} key={member.name} />
               ))}

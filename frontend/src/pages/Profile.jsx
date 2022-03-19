@@ -27,7 +27,9 @@ const Profile = () => {
         <Link to='tasks' className={styles.btn}>
           <FaTicketAlt /> View Tasks
         </Link>
-        <Link to='new-task' className={`${styles.btn} ${styles['btn-reserve']}`}>
+        <Link
+          to='new-task'
+          className={`${styles.btn} ${styles['btn-reserve']}`}>
           Create Task
         </Link>
       </section>
