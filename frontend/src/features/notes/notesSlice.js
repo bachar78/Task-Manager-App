@@ -9,7 +9,6 @@ const initialState = {
   isLoading: false,
   isUpdated: false,
   isDeleted: false,
-  isChecked: false,
   message: '',
 }
 
@@ -113,15 +112,9 @@ export const notesSlice = createSlice({
       })
       .addCase(checkNote.fulfilled, (state, action) => {
         state.isLoading = false
-        state.isChecked = true
         state.notes.map((note) =>
           action.payload._id === note._id ? (note.isChecked = true) : note
         )
-      })
-      .addCase(checkNote.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
-        state.message = action.payload
       })
   },
 })

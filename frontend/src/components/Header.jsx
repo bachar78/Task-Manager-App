@@ -31,7 +31,7 @@ function Header() {
               </button>
             </li>
             <li className={styles.user}>
-              <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg" alt="" />
+              <img src={member.image} alt="" />
               <h5>{member.name}</h5>
             </li>
           </>

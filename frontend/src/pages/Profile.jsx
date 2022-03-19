@@ -8,7 +8,7 @@ const Profile = () => {
     <div className={styles.heading}>
       <section className={styles.member}>
         <div className={styles['member-image']}>
-          <img src='realtor-1.jpeg' alt='' />
+          <img src={member.image} alt='' />
         </div>
         <div className={styles['member-details']}>
           <h3>

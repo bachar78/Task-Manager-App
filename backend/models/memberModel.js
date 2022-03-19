@@ -25,6 +25,9 @@ const memberSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    image: {
+      type: String,
+    },
   },
   {
     timestamps: true,

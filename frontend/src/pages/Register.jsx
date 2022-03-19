@@ -7,14 +7,16 @@ import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import styles from './register.module.css'
 function Register() {
+  const [inputState, setInputState] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     position: '',
     password: '',
     password2: '',
+    image: '',
   })
-  const { name, email, position, password, password2 } = formData
+  const { name, email, position, password, password2, image } = formData
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { member, isLoading, isError, isSuccess, message } = useSelector(
@@ -34,9 +36,19 @@ function Register() {
     dispatch(reset())
   }, [isError, isSuccess, member, message, navigate, dispatch])
 
+  const setImageUrl = (e) => {
+    const file = e.target.files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setFormData((prev) => ({ ...prev, image: reader.result }))
+    }
+  }
+
   const onChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
+
   const onSubmit = (e) => {
     e.preventDefault()
     if (password !== password2) {
@@ -47,6 +59,7 @@ function Register() {
         email,
         position,
         password,
+        image,
       }
       dispatch(register(memberData))
       toast.success('Welcome in our team')
@@ -128,7 +141,29 @@ function Register() {
             </select>
           </div>
           <div className={styles['form-group']}>
-            <button className={styles.btn}>Submit</button>
+            <input
+              type='file'
+              className='form-control'
+              id='image'
+              name='image'
+              value={inputState}
+              onChange={setImageUrl}
+              placeholder='insert your image'
+              autoComplete='off'
+            />
+            <label htmlFor='image'>Insert Your Image</label>
+          </div>
+          {image ? (
+            <img
+              src={image}
+              style={{ height: '100px' }}
+              alt='profile-picture'
+            />
+          ) : null}
+          <div className={styles['form-group']}>
+            <button className={styles.btn} type='submit'>
+              Submit
+            </button>
           </div>
         </form>
       </section>

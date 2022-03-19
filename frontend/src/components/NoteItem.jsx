@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { checkNote, setIsChecked } from '../features/notes/notesSlice'
 import styles from './noteItem.module.css'
-import Spinner from './Spinner'
+
 const NoteItem = ({ note }) => {
   const { member } = useSelector((state) => state.auth)
-  const { isChecked } = useSelector((state) => state.notes)
   const dispatch = useDispatch()
   const { taskId } = useParams()
 
@@ -15,6 +13,7 @@ const NoteItem = ({ note }) => {
     dispatch(setIsChecked())
     const data = { taskId, noteId: note._id }
     dispatch(checkNote(data, member.token))
+    toast.success('Note is checked')
   }
 
   return (

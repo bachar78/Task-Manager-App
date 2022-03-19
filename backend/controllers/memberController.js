@@ -3,18 +3,20 @@ const Member = require('../models/memberModel.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const generateToken = require('../utils/generateToken.js')
+const { cloudinary } = require('../utils/cloudinary')
 
 //@des Get all Members
 //@route /api/members
 //@access Public
 const getMembers = asyncHandler(async (req, res) => {
   const members = await Member.find({})
-  const homeMember = members.map((member) => ({
-    name: member.name,
-    position: member.position,
+  const homeMember = members.map(({ name, position, image }) => ({
+    name: name,
+    position: position,
+    image: image,
   }))
   res.status(200).json(homeMember)
-  if (!members || members.length === 0) {
+  if (!members) {
     res.status(400)
     throw new Error('There no member in the team')
   }
@@ -24,7 +26,7 @@ const getMembers = asyncHandler(async (req, res) => {
 //@route /api/members
 //@access Public
 const registerMember = asyncHandler(async (req, res) => {
-  const { name, position, email, password, isAdmin } = req.body
+  const { name, position, email, password, isAdmin, image } = req.body
 
   //Validation
   if (!name || !email || !position || !password) {
@@ -41,6 +43,9 @@ const registerMember = asyncHandler(async (req, res) => {
   //Hash Password
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
+  const uploadedResponse = await cloudinary.uploader.upload(image, {
+    upload_preset: 'task-manager',
+  })
 
   //create member
   const member = await Member.create({
@@ -49,6 +54,7 @@ const registerMember = asyncHandler(async (req, res) => {
     position,
     isAdmin,
     password: hashedPassword,
+    image: uploadedResponse.url,
   })
   if (member) {
     res.status(201).json({
@@ -57,6 +63,7 @@ const registerMember = asyncHandler(async (req, res) => {
       email: member.email,
       position: member.position,
       isAdmin: member.isAdmin,
+      image: uploadedResponse.url,
       token: generateToken(member._id),
     })
   } else {
