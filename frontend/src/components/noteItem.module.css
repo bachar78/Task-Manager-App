@@ -40,3 +40,9 @@
 .btn-checked:hover {
   transform: scale(.95);
 }
+
+@media (max-width: 600px) {
+  h3 {
+    font-size: 1.5rem;
+  }
+}

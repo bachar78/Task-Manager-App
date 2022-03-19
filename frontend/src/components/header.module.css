@@ -1,69 +1,84 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 5rem;
-    border-bottom: 1px solid #e6e6e6;
-    min-height: 10vh;
-    border-bottom: var(--line);
-    background-color: var(--color-secondary);
-    color: var(--color-grey-light-1);
-    box-shadow: var(--shadow);
-    position: relative;
-  }
-  
-  .header ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .header ul li {
-    margin-left: 3rem;
-  }
-  
-  .header ul li a {
-    display: flex;
-    align-items: center;
-  }
-  
-  .header ul li a:hover {
-    color: #777;
-  }
-  
-  .header ul li a svg {
-    margin-right: 5px;
-  }
-  
-  .user {
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5rem;
+  border-bottom: 1px solid #e6e6e6;
+  min-height: 10vh;
+  border-bottom: var(--line);
+  background-color: var(--color-secondary);
+  color: var(--color-grey-light-1);
+  box-shadow: var(--shadow);
+  position: relative;
+}
 
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.header ul li {
+  margin-left: 3rem;
+}
 
-  .header img {
-    width: 4rem;
-    border-radius: 30%;
-    margin-right: .7rem;
-    border: 2px solid var(--color-primary);
-  }
+.header ul li a {
+  display: flex;
+  align-items: center;
+}
 
-  .logout {
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    color: var(--color-grey-light-1);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
+.header ul li a:hover {
+  color: #777;
+}
 
-  .logout:hover {
-    color: #777;
+.header ul li a svg {
+  margin-right: 5px;
+}
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+}
+.header img {
+  width: 4rem;
+  border-radius: 30%;
+  margin-right: 0.7rem;
+  border: 1px solid var(--color-primary);
+}
+
+.logout {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  color: var(--color-grey-light-1);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: #777;
+}
+
+.logout svg {
+  margin-right: 5px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-width: 40rem;
   }
-  
-  .logout svg {
-    margin-right: 5px;
+  ul {
+    justify-content: space-around;
+    width: 90%;
+    margin: 0 auto;
   }
+  li {
+    margin-left: 0rem;
+    margin-top: 1rem;
+  }
+}

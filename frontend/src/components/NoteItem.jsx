@@ -41,7 +41,7 @@ const NoteItem = ({ note }) => {
       </div>
 
       <button className={styles['btn-checked']} onClick={onCheck}>
-        Checked
+        {note.isChecked?"Checked": "Check"}
       </button>
     </div>
   )

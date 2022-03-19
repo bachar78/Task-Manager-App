@@ -62,7 +62,6 @@ function Register() {
         image,
       }
       dispatch(register(memberData))
-      toast.success('Welcome in our team')
     }
   }
   if (isLoading) {
@@ -133,6 +132,7 @@ function Register() {
           </div>
           <div className={styles['form-group']}>
             <select name='position' id='position' onChange={onChange}>
+              <option value='Front-end' className={styles.options}>Choose a Position</option>
               <option value='Front-end'>Front-end</option>
               <option value='Backend'>Backend</option>
               <option value='Full-stack'>Full-stack</option>

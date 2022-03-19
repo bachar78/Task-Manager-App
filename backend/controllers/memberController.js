@@ -57,6 +57,7 @@ const registerMember = asyncHandler(async (req, res) => {
     image: uploadedResponse.url,
   })
   if (member) {
+    console.log(member)
     res.status(201).json({
       _id: member._id,
       name: member.name,
@@ -89,6 +90,7 @@ const loginMember = asyncHandler(async (req, res) => {
       email: member.email,
       position: member.position,
       isAdmin: member.isAdmin,
+      image: member.image,
       token: generateToken(member._id),
     })
   } else {

@@ -85,3 +85,26 @@
     background-color: darkred;
     color: #fff;
   }
+
+  @media (max-width:900px) {
+    .tasks {
+      padding: 4rem 1rem;
+      height: 100vh;
+    }
+  }
+  @media (max-width:600px) {
+    .tasks {
+      padding: 2rem 0rem;
+      min-width: 40rem;
+    }
+    .tasks-heading {
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tasks-heading h1  {
+      margin-top: 2rem;
+    }
+    .task, .tasks-title {
+      border-radius: 0%;
+    }
+  }

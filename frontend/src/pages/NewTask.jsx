@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -6,6 +5,7 @@ import { createTask, reset } from '../features/tasks/taskSlice'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
+import styles from './newTask.module.css'
 
 function NewTask() {
   const { member } = useSelector((state) => state.auth)
@@ -40,18 +40,14 @@ function NewTask() {
     return <Spinner />
   }
   return (
-    <>
-      <BackButton url={'/profile'} />
-      <section>
-        <h1>
-          {member.position} Developer {member.name}
-        </h1>
-        <h5>{member.email}</h5>
+    <div className={styles.register}>
+      <section className={styles['task-heading']}>
+        <BackButton url={'/profile'} />
+        <h1>Developer {member.name}</h1>
       </section>
-
-      <section className='form'>
+      <section className={styles.form}>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <label htmlFor='task'>Task</label>
             <input
               type='text'
@@ -61,7 +57,7 @@ function NewTask() {
               autoComplete='off'
             />
           </div>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <label htmlFor='description'>Description</label>
             <input
               type='text'
@@ -71,7 +67,7 @@ function NewTask() {
               autoComplete='off'
             />
           </div>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <label htmlFor='status'>Status</label>
             <select
               name='status'
@@ -83,7 +79,7 @@ function NewTask() {
               <option value='finished'>Finished</option>
             </select>
           </div>
-          <div className='form-group'>
+          <div className={styles['form-group']}>
             <label htmlFor='deadline'>Set a deadline</label>
             <input
               type='date'
@@ -93,12 +89,12 @@ function NewTask() {
               autoComplete='off'
             />
           </div>
-          <div className='form-group'>
-            <button className='btn btn-back'>Add</button>
+          <div className={styles['form-group']}>
+            <button className={styles.btn}>Create Task</button>
           </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

@@ -20,6 +20,7 @@ function Home() {
       })()
     }
   }, [member, navigate, setMembers])
+ 
   return (
     <>
       <section className={styles.heading}>

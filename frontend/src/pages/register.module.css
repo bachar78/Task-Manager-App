@@ -1,12 +1,12 @@
 .register {
-  min-height: 90vh;
+  min-height: 70vh;
   background-color: var(--color-secondary);
   text-align: center;
 }
 
 .register h1 {
   font-size: 4.5rem;
-  padding: 6rem;
+  padding: 4rem;
   color: var(--color-primary-dark);
   text-transform: uppercase;
 }
@@ -64,6 +64,13 @@
   transition: all 0.5s ease;
   color: var(--color-primary-dark);
 }
+
+.options {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  display: none;
+}
 input:placeholder-shown + label {
   opacity: 0;
   visibility: hidden;
@@ -89,4 +96,20 @@ input:placeholder-shown + label {
 
   .btn:hover {
     transform: scale(0.98);
+  }
+
+
+  @media (max-width: 900px) {
+    .form {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .register {
+      min-width: 40rem;
+    }
+    .form {
+      width: 80%;
+    }
   }
