@@ -29,13 +29,15 @@
 }
 .member-image {
   height: 25rem;
+  width: 25rem;
   margin: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .member-image img {
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
 
 .tasks {

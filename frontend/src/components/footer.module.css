@@ -6,6 +6,7 @@ footer {
     font-size: 1.3rem;
     background-color: var(--color-secondary);
     color: var(--color-grey-light-1);
+    padding-top: 1rem;
 
   }
 

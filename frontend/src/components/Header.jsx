@@ -1,4 +1,5 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser, FaHome } from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt, FaTasks } from 'react-icons/fa'
+import { AiOutlineTeam } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
@@ -16,9 +17,10 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <div className='logo'>
+      <div className={styles.logo}>
         <Link to='/'>
-          <FaHome /> Task_Manager
+          <FaTasks />
+          Task_Manager
         </Link>
       </div>
       <ul>
@@ -31,7 +33,9 @@ function Header() {
               </button>
             </li>
             <li className={styles.user}>
-              <img src={member.image} alt='user image' />
+              <div className={styles.image}>
+                <img src={member.image} alt='user' />
+              </div>
               <h5>{member.name}</h5>
             </li>
           </>
@@ -45,7 +49,7 @@ function Header() {
             </li>
             <li>
               <Link to='/register'>
-                <FaUser /> Register
+                <AiOutlineTeam /> Register
               </Link>
             </li>
           </>

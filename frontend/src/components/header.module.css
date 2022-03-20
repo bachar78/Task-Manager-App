@@ -11,7 +11,10 @@
   box-shadow: var(--shadow);
   position: relative;
 }
-
+.logo a {
+  display: flex;
+  align-items: center;
+}
 .header ul {
   display: flex;
   align-items: center;
@@ -22,7 +25,8 @@
   margin-left: 3rem;
 }
 
-.header ul li a {
+.header ul li a,
+.header {
   display: flex;
   align-items: center;
 }
@@ -31,7 +35,8 @@
   color: #777;
 }
 
-.header ul li a svg {
+.header ul li a svg,
+.logo a svg {
   margin-right: 5px;
 }
 .user {
@@ -40,11 +45,18 @@
   align-items: center;
   font-size: 1.8rem;
 }
-.header img {
+
+.image {
   width: 4rem;
-  border-radius: 30%;
+  height: 4rem;
+  border-radius: 50%;
   margin-right: 0.7rem;
   border: 1px solid var(--color-primary);
+  overflow: hidden;
+}
+.header img {
+  width: 100%;
+  object-fit: cover;
 }
 
 .logout {

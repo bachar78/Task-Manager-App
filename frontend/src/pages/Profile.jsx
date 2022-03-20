@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaQuestionCircle, FaTicketAlt } from 'react-icons/fa'
+import { FaTicketAlt } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import styles from './profile.module.css'
 const Profile = () => {
@@ -8,7 +8,7 @@ const Profile = () => {
     <div className={styles.heading}>
       <section className={styles.member}>
         <div className={styles['member-image']}>
-          <img src={member.image} alt='' />
+          <img src={member.image} alt='member' />
         </div>
         <div className={styles['member-details']}>
           <h3>
