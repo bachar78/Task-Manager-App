@@ -18,7 +18,7 @@ function Header() {
     <header className={styles.header}>
       <div className='logo'>
         <Link to='/'>
-          <FaHome /> Home
+          <FaHome /> Task_Manager
         </Link>
       </div>
       <ul>

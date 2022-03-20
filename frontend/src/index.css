@@ -54,12 +54,6 @@ ul {
   padding: 0 2rem;
 }
 
-footer {
-  position: sticky;
-  top: 95vh;
-  text-align: center;
-}
-
 .loadingSpinnerContainer {
   position: fixed;
   top: 0;

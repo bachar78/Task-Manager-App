@@ -1,0 +1,15 @@
+footer {
+    position: sticky;
+    height: 4vh;
+    top: 95vh;
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: var(--color-secondary);
+    color: var(--color-grey-light-1);
+
+  }
+
+  footer span {
+      font-weight: 700;
+      color: var(--color-primary-dark);
+  }

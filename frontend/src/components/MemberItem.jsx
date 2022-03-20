@@ -4,7 +4,9 @@ import styles from './memberItem.module.css'
 const MemberItem = ({ member }) => {
   return (
     <div className={styles.member}>
-      <img src={member.image} alt='' />
+      <div className={styles.image}>
+        <img src={member.image} alt='profile image' />
+      </div>
       <h4>{member.name}</h4>
       <p>{member.position}</p>
     </div>

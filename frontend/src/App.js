@@ -11,6 +11,7 @@ import Tasks from './pages/Tasks'
 import NewTask from './pages/NewTask'
 import Task from './pages/Task'
 import UpdateTask from './pages/UpdateTask'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path='task/:taskId/update' element={<UpdateTask />} />
             </Route>
           </Routes>
+          <Footer/>
         </div>
       </Router>
       <ToastContainer />
