@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import PrivateRoute from './components/PrivateRoute'
+import PrivateRoute from './components/Privacy/PrivateRoute'
 import Profile from './pages/Profile'
 import Tasks from './pages/Tasks'
 import NewTask from './pages/NewTask'
@@ -31,7 +31,7 @@ function App() {
               <Route path='task/:taskId/update' element={<UpdateTask />} />
             </Route>
           </Routes>
-          <Footer/>
+          <Footer />
         </div>
       </Router>
       <ToastContainer />

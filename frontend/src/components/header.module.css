@@ -46,6 +46,19 @@
   font-size: 1.8rem;
 }
 
+.admin {
+  font-size: 1.8rem;
+  display: flex;
+  color: var(--color-grey-light-1);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.admin svg {
+  margin-right: .5rem;
+  filter: invert(94%) sepia(30%) saturate(4767%) hue-rotate(182deg) brightness(122%) contrast(94%);
+}
 .image {
   width: 4rem;
   height: 4rem;

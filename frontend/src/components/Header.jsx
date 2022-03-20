@@ -1,5 +1,6 @@
 import { FaSignInAlt, FaSignOutAlt, FaTasks } from 'react-icons/fa'
 import { AiOutlineTeam } from 'react-icons/ai'
+import {GrUserAdmin} from 'react-icons/gr'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
@@ -32,6 +33,16 @@ function Header() {
                 <FaSignOutAlt /> Logout
               </button>
             </li>
+            {member && member.isAdmin ? (
+            <li className={styles.admin}>
+              <GrUserAdmin />
+                <select>
+                  <option value="">Admin</option>
+                  <option value="">Members</option>
+                  <option value="">Tasks</option>
+                </select>
+            </li>
+        ) : null}
             <li className={styles.user}>
               <div className={styles.image}>
                 <img src={member.image} alt='user' />
