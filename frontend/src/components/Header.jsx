@@ -15,7 +15,13 @@ function Header() {
     dispatch(reset())
     navigate('/')
   }
-
+  const onSelect = (e) => {
+    if (e.target.value === 'admin') {
+      navigate('/profile')
+    } else {
+      navigate(`/admin/${e.target.value}`)
+    }
+  }
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -56,17 +62,17 @@ function Header() {
           </>
         )}
         {member && member.isAdmin ? (
-              <li className={styles.admin}>
-                <GrUserAdmin />
-                <div className={styles.select}>
-                <select>
-                  <option value=''>Admin</option>
-                  <option value=''>Members</option>
-                  <option value=''>Tasks</option>
-                  </select>
-                  </div>
-              </li>
-            ) : null}
+          <li className={styles.admin}>
+            <GrUserAdmin />
+            <div className={styles.select}>
+              <select onClick={onSelect}>
+                <option value='admin'>admin</option>
+                <option value='members'>members</option>
+                <option value='tasks'>Tasks</option>
+              </select>
+            </div>
+          </li>
+        ) : null}
       </ul>
     </header>
   )

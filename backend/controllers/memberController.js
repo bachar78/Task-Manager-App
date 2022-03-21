@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const generateToken = require('../utils/generateToken.js')
 const { cloudinary } = require('../utils/cloudinary')
 
-//@des Get all Members
+//@des Get all Members for the page home
 //@route /api/members
 //@access Public
 const getMembers = asyncHandler(async (req, res) => {
@@ -57,7 +57,6 @@ const registerMember = asyncHandler(async (req, res) => {
     image: uploadedResponse.url,
   })
   if (member) {
-    console.log(member)
     res.status(201).json({
       _id: member._id,
       name: member.name,
@@ -113,9 +112,78 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(member)
 })
 
+//@des Fetch all members by admin
+//@route Get /api/members/all
+//@access Private Admin
+
+const getAllMembers = asyncHandler(async (req, res) => {
+  const allMembers = await Member.find({}).select(['-password', '-image'])
+  if (allMembers) {
+    res.json(allMembers)
+  } else {
+    res.status(404)
+    throw Error('Products Not Found')
+  }
+})
+
+//@des Delete a member by admin
+//@route DELETE /api/members/:id/admin
+//@access Private admin
+const deleteMember = asyncHandler(async (req, res) => {
+  const member = await Member.findById(req.params.id)
+  if (member) {
+    await member.remove()
+    res.json({ message: 'member Removed' })
+  } else {
+    res.status(404)
+    throw Error('Product Not Found')
+  }
+})
+
+//@des Create a member by admin
+//@route POST /api/members/new
+//@access Private admin
+const createMember = asyncHandler(async (req, res) => {
+  const { name, email, password, image, position, isAdmin } = req.body
+
+  //Hash Password
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+  const uploadedResponse = await cloudinary.uploader.upload(image, {
+    upload_preset: 'task-manager',
+  })
+
+  //create member
+  const member = await Member.create({
+    name,
+    email,
+    position,
+    isAdmin,
+    password: hashedPassword,
+    image: uploadedResponse.url,
+  })
+  if (member) {
+    res.status(201).json({
+      _id: member._id,
+      name: member.name,
+      email: member.email,
+      position: member.position,
+      isAdmin: member.isAdmin,
+      image: uploadedResponse.url,
+      token: generateToken(member._id),
+    })
+  } else {
+    res.status(400)
+    throw new Error('Invalid member data')
+  }
+})
+
 module.exports = {
   registerMember,
   loginMember,
   getMe,
   getMembers,
+  getAllMembers,
+  deleteMember,
+  createMember,
 }

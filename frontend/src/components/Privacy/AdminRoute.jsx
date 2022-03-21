@@ -3,10 +3,10 @@ import Spinner from '../Spinner'
 import { useSelector } from 'react-redux'
 
 const PrivateRoute = () => {
-  const { member } = useSelector((state) => state.auth)
+  const { member, isLoading } = useSelector((state) => state.auth)
   const { isAdmin } = member
 
-  if (loading) {
+  if (isLoading) {
     return <Spinner />
   }
   return isAdmin ? <Outlet /> : <Navigate to='/' />

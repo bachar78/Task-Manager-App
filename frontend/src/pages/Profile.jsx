@@ -6,7 +6,6 @@ import styles from './profile.module.css'
 const Profile = () => {
   const { member } = useSelector((state) => state.auth)
   const {isAdmin} = member
-  console.log(isAdmin)
   return (
     <div className={styles.heading}>
       <section className={styles.member}>

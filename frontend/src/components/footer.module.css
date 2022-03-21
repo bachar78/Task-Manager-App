@@ -1,12 +1,12 @@
 footer {
     position: sticky;
-    height: 4vh;
+    height: 6vh;
     top: 95vh;
     text-align: center;
     font-size: 1.3rem;
     background-color: var(--color-secondary);
     color: var(--color-grey-light-1);
-    padding-top: 1rem;
+    padding-top: 4rem;
 
   }
 

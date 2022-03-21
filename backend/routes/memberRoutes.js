@@ -5,11 +5,19 @@ const {
   loginMember,
   getMe,
   getMembers,
+  getAllMembers,
+  deleteMember,
+  createMember,
 } = require('../controllers/memberController.js')
-const { protect } = require('../middleware/authMiddleware.js')
+const { protect, admin } = require('../middleware/authMiddleware.js')
 
 router.route('/').get(getMembers).post(registerMember)
 router.post('/login', loginMember)
 router.get('/me', protect, getMe)
+router.route('/all').get(protect, admin, getAllMembers)
+router
+  .route('/:id/admin')
+  .delete(protect, admin, deleteMember)
+  .post(protect, admin, createMember)
 
 module.exports = router

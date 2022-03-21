@@ -12,6 +12,9 @@ import NewTask from './pages/NewTask'
 import Task from './pages/Task'
 import UpdateTask from './pages/UpdateTask'
 import Footer from './components/Footer'
+import AdminMembers from './pages/AdminMembers'
+import AdminTasks from './pages/AdminTasks'
+import AdminRoute from './components/Privacy/AdminRoute'
 
 function App() {
   return (
@@ -29,6 +32,10 @@ function App() {
               <Route path='new-task' element={<NewTask />} />
               <Route path='task/:taskId' element={<Task />} />
               <Route path='task/:taskId/update' element={<UpdateTask />} />
+            </Route>
+            <Route path='/admin' element={<AdminRoute />}> 
+              <Route path='tasks' element={<AdminTasks />} />
+              <Route path='members' element={<AdminMembers />} />
             </Route>
           </Routes>
           <Footer />
