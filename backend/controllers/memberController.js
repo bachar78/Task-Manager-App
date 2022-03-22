@@ -178,6 +178,32 @@ const createMember = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc    Update member profile by admin
+// @route   PUT /api/members/:id/admin
+// @access  Private-admin
+export const updateMember = asyncHandler(async (req, res) => {
+  const member = await Member.findById(req.params.id)
+
+  if (member) {
+    member.name = req.body.name || member.name
+    member.email = req.body.email || member.email
+    member.position = req.body.position || member.position
+    member.isAdmin = req.body.isAdmin
+    const updatedMember = await user.save()
+
+    res.json({
+      _id: updatedMember._id,
+      name: updatedMember.name,
+      email: updatedMember.email,
+      position: updatedMember.position,
+      isAdmin: updatedMember.isAdmin,
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
 module.exports = {
   registerMember,
   loginMember,
@@ -186,4 +212,5 @@ module.exports = {
   getAllMembers,
   deleteMember,
   createMember,
+  updateMember,
 }
