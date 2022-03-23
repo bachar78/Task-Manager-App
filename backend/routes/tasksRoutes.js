@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {} = require('../controllers/taskController')
-const { protect } = require('../middleware/authMiddleware.js')
+const { protect, admin } = require('../middleware/authMiddleware.js')
 const noteRouter = require('./noteRoutes')
 
 // Re-route into note router
@@ -12,6 +11,9 @@ const {
   getTask,
   deleteTask,
   updateTask,
+  getAllTasks,
+  updateTaskByAdmin,
+  deleteTaskByAdmin,
 } = require('../controllers/taskController')
 
 router.route('/').get(protect, getTasks).post(protect, createTask)
@@ -20,5 +22,9 @@ router
   .get(protect, getTask)
   .delete(protect, deleteTask)
   .put(protect, updateTask)
+router('/all').get(protect, admin, getAllTasks)
+router('/:taskId/admin')
+  .delete(protect, admin, deleteTaskByAdmin)
+  .put(protect, admin, updateTaskByAdmin)
 
 module.exports = router

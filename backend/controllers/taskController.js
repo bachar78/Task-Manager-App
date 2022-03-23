@@ -32,7 +32,7 @@ const getTask = asyncHandler(async (req, res) => {
   const task = await Task.findById(taskId)
   if (!task) {
     res.status(404)
-    throw new Error('Ticket not found')
+    throw new Error('Task not found')
   }
   if (task.member.toString() !== req.member.id) {
     res.status(401)
@@ -91,8 +91,8 @@ const deleteTask = asyncHandler(async (req, res) => {
   res.status(200).json(task)
 })
 
-// @desc    Update ticket
-// @route   PUT /api/tickets/:taskId
+// @desc    Update task
+// @route   PUT /api/tasks:taskId
 // @access  Private
 const updateTask = asyncHandler(async (req, res) => {
   const { taskId } = req.params
@@ -123,4 +123,64 @@ const updateTask = asyncHandler(async (req, res) => {
   res.status(200).json(updatedTask)
 })
 
-module.exports = { getTasks, createTask, getTask, deleteTask, updateTask }
+//@des Fetch all tasks by admin
+//@route Get /api/tasks/all
+//@access Private Admin
+const getAllTasks = asyncHandler(async (req, res) => {
+  const allTasks = await Task.find({})
+  if (allTasks) {
+    res.json(allTasks)
+  } else {
+    res.status(404)
+    throw Error('Products Not Found')
+  }
+})
+
+//@des Delete a task by admin
+//@route DELETE /api/tasks/:id/admin
+//@access Private admin
+const deleteTaskByAdmin = asyncHandler(async (req, res) => {
+  const task = await Task.findById(req.params.id)
+  if (task) {
+    await task.remove()
+    res.json({ message: 'Task Removed' })
+  } else {
+    res.status(404)
+    throw Error('Task Not Found')
+  }
+})
+
+// @desc    Update a task
+// @route   PUT /api/tasks/:id/admin
+// @access  Private/Admin
+const updateTaskByAdmin = asyncHandler(async (req, res) => {
+  const { member, task, description, status, deadline } = req.body
+
+  const taskToUpdate = await Task.findById(req.params.id)
+
+  if (taskToUpdate) {
+    taskToUpdate.member = member
+    taskToUpdate.task = task
+    taskToUpdate.description = description
+    taskToUpdate.status = status
+    taskToUpdate.deadline = deadline
+
+    const updatedTask = await taskToUpdate.save()
+    res.json(updatedTask)
+  } else {
+    res.status(404)
+    throw new Error('Product not found')
+  }
+})
+
+module.exports = {
+  getTasks,
+  createTask,
+  getTask,
+  deleteTask,
+  updateTask,
+  getAllTasks,
+  deleteTask,
+  deleteTaskByAdmin,
+  updateTaskByAdmin,
+}

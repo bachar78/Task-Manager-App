@@ -181,7 +181,7 @@ const createMember = asyncHandler(async (req, res) => {
 // @desc    Update member profile by admin
 // @route   PUT /api/members/:id/admin
 // @access  Private-admin
-export const updateMember = asyncHandler(async (req, res) => {
+const updateMember = asyncHandler(async (req, res) => {
   const member = await Member.findById(req.params.id)
 
   if (member) {
