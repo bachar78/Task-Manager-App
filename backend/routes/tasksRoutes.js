@@ -22,8 +22,9 @@ router
   .get(protect, getTask)
   .delete(protect, deleteTask)
   .put(protect, updateTask)
-router('/all').get(protect, admin, getAllTasks)
-router('/:taskId/admin')
+router.route('/all').get(protect, admin, getAllTasks)
+router
+  .route('/:taskId/admin')
   .delete(protect, admin, deleteTaskByAdmin)
   .put(protect, admin, updateTaskByAdmin)
 
