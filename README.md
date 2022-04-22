@@ -50,13 +50,13 @@ npm run dev
 
 ```
 backend
-    └── config
-    └── controllers
-    └── Middlewares
-    └── models
-    └── routes
-    └── util
-    server.js
+|   └── config
+|   └── controllers
+|   └── Middlewares
+|   └── models
+|   └── routes
+|   └── util
+|    server.js
 frontend
 ├── public
 └── src
