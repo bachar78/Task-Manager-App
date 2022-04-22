@@ -17,9 +17,9 @@
 
 # Task-Manager-App
 
-Task-Manager-App is an application built with the MERN stack.
-It is for a team who is working to finish a specific project where every member can write his own tasks and define the status, the deadline, the notes about every single task
-The member can create, update , delete and browse his own tasks
+- Task-Manager-App is an application built with the MERN stack.
+- It is for a team who is working to finish a specific project where every member can write his own tasks and define the status, the deadline, the notes about every single task.
+- The member can create, update , delete and browse his own tasks
 
 ## 1.Setup
 
