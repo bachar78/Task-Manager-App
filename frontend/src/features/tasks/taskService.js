@@ -58,8 +58,7 @@ const deleteTask = async (taskId, token) => {
     },
   }
   const { data } = await axios.delete(`${API_URL}/${taskId}`, config)
-
-  console.log(data)
+  return data
 }
 
 const taskService = { createTask, getTasks, getTask, updateTask, deleteTask }

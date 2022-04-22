@@ -6,7 +6,7 @@ const generateToken = require('../utils/generateToken.js')
 const { cloudinary } = require('../utils/cloudinary')
 
 //@des Get all Members for the page home
-//@route /api/members
+//@route /api/users
 //@access Public
 const getMembers = asyncHandler(async (req, res) => {
   const members = await Member.find({})
@@ -22,8 +22,8 @@ const getMembers = asyncHandler(async (req, res) => {
   }
 })
 
-//@des Register a new Member
-//@route /api/members
+//@des Register a new user
+//@route POST /api/users
 //@access Public
 const registerMember = asyncHandler(async (req, res) => {
   const { name, position, email, password, isAdmin, image } = req.body

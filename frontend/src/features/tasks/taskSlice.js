@@ -125,7 +125,7 @@ export const tasksSlice = createSlice({
         state.message = action.payload
       })
       .addCase(updateTask.pending, (state) => {
-        state.isError = true
+        state.isLoading = true
       })
       .addCase(updateTask.fulfilled, (state, action) => {
         state.isLoading = false

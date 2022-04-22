@@ -49,7 +49,6 @@ const checkNote = asyncHandler(async (req, res) => {
     res.status(401)
     throw new Error("This note doesn't belong to this task")
   }
-  
 
   const checkedNote = await Note.findByIdAndUpdate(
     noteId,
@@ -58,7 +57,7 @@ const checkNote = asyncHandler(async (req, res) => {
       new: true,
     }
   )
- 
+
   res.status(200).json(checkedNote)
 })
 
@@ -72,6 +71,10 @@ const createNote = asyncHandler(async (req, res) => {
   if (!member) {
     res.status(401)
     throw new Error('Member not found')
+  }
+  if (!text) {
+    res.status(400)
+    throw new Error('You should a text')
   }
   const foundTask = await Task.findById(taskId)
   if (foundTask.member.toString() !== req.member.id) {
